@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 app.get('/signup', async (req, res) => {
   let email = req.query.email;
   let password = req.query.password;
-  let ifisdiscordbot = reg.query.from;
+  let ifisdiscordbot = req.query.from;
 
   if (ifisdiscordbot != process.env['from']) {
     return res.status(403).json({
