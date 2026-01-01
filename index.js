@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
   res.json({ status: 'API is working' });
 });
 
-app.post('/signup', async (req, res) => {
+app.get('/signup', async (req, res) => {
   let email = req.query.email;
   let password = req.query.password;
   let ifisdiscordbot = reg.query.from;
