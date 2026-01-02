@@ -14,7 +14,7 @@ const Nickfirebase = {
 };
 const app2 = initializeApp(Nickfirebase);
 const auth2 = getAuth(app2);
-
+const MAX_LEN = 1950;
 app.use(cors());
 app.use(express.json());
 
@@ -33,7 +33,14 @@ app.get('/signup', async (req, res) => {
     });
   }
   const userCredential = await createUserWithEmailAndPassword(auth2, email, password);
-  res.json({data: userCredential});
+  
+let responseData = JSON.stringify({ data: userCredential });
+  if (responseData.length > MAX_LEN) {
+  responseData =
+    responseData.slice(0, MAX_LEN - 34) + '...[to long for discord Message]';
+}
+  res.setHeader('Content-Type', 'application/json');
+  res.send(responseData);
 });
 
 app.listen(8000, () => {
